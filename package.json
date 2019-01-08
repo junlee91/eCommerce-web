@@ -1,0 +1,17 @@
+{
+  "name": "soda-store",
+  "version": "1.0.0",
+  "description": "E-Commerce PWA built with NextJS and GraphqlCMS",
+  "author": "junlee91 <junlee3081@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "next": "^7.0.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  }
+}
