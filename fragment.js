@@ -6,6 +6,7 @@ export const PRODUCT_FRAGMENT = gql`
     name
     detail
     price
+    onCart @client # mix local state with remote state (API)
     photo {
       url
     }

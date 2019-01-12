@@ -26,12 +26,16 @@ export const resolvers = {
       const { cart } = cache.readQuery({ query: cartQuery });
 
       let newCart;
+      let onCart;
       const foundProduct = cart.find(aProduct => aProduct.id === product.id);
+
       if (foundProduct) {
         const cleanCart = cart.filter(aProduct => aProduct.id !== product.id);
         newCart = cleanCart;
+        onCart = false;
       } else {
         newCart = [...cart, product];
+        onCart = true;
       }
 
       cache.writeData({
@@ -40,7 +44,20 @@ export const resolvers = {
         }
       });
 
+      cache.writeFragment({
+        id: `Product:${product.id}`,
+        fragment: PRODUCT_FRAGMENT,
+        data: {
+          __typename: "Product",
+          ...product,
+          onCart
+        }
+      });
+
       return null;
     }
+  },
+  Product: {
+    onCart: () => false
   }
 };
