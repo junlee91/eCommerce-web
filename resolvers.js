@@ -14,10 +14,24 @@ export const resolvers = {
       `;
       const product = cache.readFragment({
         fragment,
-        id,
+        id
+      });
+      const cartQuery = gql`
+        {
+          cart @client {
+            id
+          }
+        }
+      `;
+      const { cart } = cache.readQuery({ query: cartQuery });
+
+      cache.writeData({
+        data: {
+          cart: [...cart, product]
+        }
       });
 
-      console.log(product);
+      return null;
     }
   }
 };
