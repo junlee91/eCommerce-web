@@ -1,8 +1,6 @@
 import App, { Container } from "next/app";
 import React from "react";
 
-import Header from "../components/Header";
-
 export default class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
     let pageProps = {};
@@ -17,7 +15,6 @@ export default class MyApp extends App {
 
     return (
       <Container>
-        <Header />
         <Component {...pageProps} />
       </Container>
     );
