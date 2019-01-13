@@ -1,5 +1,7 @@
 import { Layout } from "antd";
 import App, { Container } from "next/app";
+import withNProgress from "next-nprogress";
+import NProgressStyles from "next-nprogress/styles";
 import React from "react";
 import { ApolloProvider } from "react-apollo";
 
@@ -20,18 +22,17 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps, apollo } = this.props;
-
     return (
-      <ApolloProvider client={apollo}>
-        <Container>
+      <Container>
+        <NProgressStyles color="black" spinner={true} />
+        <ApolloProvider client={apollo}>
           <Layout>
             <Component {...pageProps} />
-            <Footer>This is important</Footer>
           </Layout>
-        </Container>
-      </ApolloProvider>
+        </ApolloProvider>
+      </Container>
     );
   }
 }
 
-export default withApollo(MyApp);
+export default withNProgress()(withApollo(MyApp));
