@@ -9,7 +9,6 @@ export default class MyDocument extends Document {
     return (
       <html lang="en">
         <Head>
-          <title>Soda Store</title>
           <meta name="author" content={"Nicolas Serrano"} />
           <link rel="manifest" href="/static/manifest.json" />
           <link

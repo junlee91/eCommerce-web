@@ -2,6 +2,7 @@
 const express = require("express");
 const next = require("next");
 
+const { resolve } = require("path");
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -10,6 +11,11 @@ app
   .prepare()
   .then(() => {
     const server = express();
+
+    // register service worker
+    server.get("/sw.js", (req, res) => {
+      app.serveStatic(req, res, resolve("./static/service-worker.js"));
+    });
 
     // pretty url
     server.get("/product/:id", (req, res) => {

@@ -7,8 +7,6 @@ import { ApolloProvider } from "react-apollo";
 
 import withApollo from "../lib/withApollo";
 
-const { Footer } = Layout;
-
 class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
     let pageProps = {};
@@ -18,6 +16,15 @@ class MyApp extends App {
     }
 
     return { pageProps };
+  }
+
+  componentDidMount() {
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/sw.js")
+        .then(result => console.log("SW Registered: ", result))
+        .catch(error => console.log("Can't register SW: ", error));
+    }
   }
 
   render() {
